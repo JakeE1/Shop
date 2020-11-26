@@ -3,40 +3,45 @@ import storeConfigQuery from '~/apollo/queries/common/getStoreConfig.graphql'
 
 // STATE
 export const state = () => ({
-  storeConfig: {}
+  storeConfig: {},
 })
 // GETTERS
 export const getters = {
   storeConfig: (store) => store.storeConfig,
-  rootCategoryId: (store) => (store.storeConfig && store.storeConfig.root_category_id) ? store.storeConfig.root_category_id : null,
-  logoSrc: (store) => (store.storeConfig && store.storeConfig.header_logo_src) ? store.storeConfig.header_logo_src : null
+  rootCategoryId: (store) =>
+    store.storeConfig && store.storeConfig.root_category_id
+      ? store.storeConfig.root_category_id
+      : null,
+  categoryUrlSuffix: (store) =>
+    store.storeConfig && store.storeConfig.category_url_suffix
+      ? store.storeConfig.category_url_suffix
+      : null,
 }
-// MUTATION 
+// MUTATIONS - sync (commit)
 export const mutations = {
   [types.SET_STORE_CONFIG](state, payload) {
     state.storeConfig = payload
-  }
-}
-// ACTION
-export const actions = {
-  async nuxtServerInit({dispatch, commit, store, getters}) {
-    await dispatch('setStoreConfig')
-    await Promise.all([
-      dispatch('category/setCategoryTree')
-    ])
   },
-  async setStoreConfig({commit, dispatch, state}) {
+}
+// ACTIONS - async (dispatch)
+export const actions = {
+  async nuxtServerInit({ dispatch }) {
+    await dispatch('setStoreConfig')
+    await Promise.all([dispatch('category/setCategoryTree')])
+  },
+  async setStoreConfig({ commit }) {
     const gql = this.app.apolloProvider.defaultClient
 
     try {
-      const {data} = await gql.query({
-        query: storeConfigQuery
+      const { data } = await gql.query({
+        query: storeConfigQuery,
       })
       if (data && data.storeConfig) {
         commit(types.SET_STORE_CONFIG, data.storeConfig)
       }
     } catch (e) {
-      console.error(e);
+      // eslint-disable-next-line no-console
+      console.error(e)
     }
-  }
+  },
 }

@@ -2,24 +2,32 @@
   "name": "shop",
   "version": "1.0.0",
   "description": "Nuxt+GraphQl+Magento+Vuetify",
-  "author": "lna1989",
+  "author": "vlad",
   "private": true,
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "npm run lint:js"
   },
   "dependencies": {
-    "@nuxtjs/apollo": "^4.0.1-rc.1",
-    "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/dotenv": "^1.4.0",
-    "@nuxtjs/proxy": "^2.0.0",
-    "@nuxtjs/pwa": "^3.0.0-0",
-    "graphql-tag": "^2.10.3",
-    "nuxt": "^2.0.0"
+    "@nuxtjs/apollo": "^4.0.1-rc.3",
+    "@nuxtjs/axios": "^5.12.0",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/proxy": "^2.0.1",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "apollo-cache-persist": "^0.1.1",
+    "cookie-universal-nuxt": "^2.1.4",
+    "graphql-tag": "^2.11.0",
+    "nuxt": "^2.14.0",
+    "nuxt-webfontloader": "^1.1.0"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.0.0"
+    "@nuxt/types": "^2.14.3",
+    "@nuxtjs/eslint-config": "^3.1.0",
+    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/vuetify": "^1.11.2"
   }
 }

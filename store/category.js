@@ -1,6 +1,5 @@
 import * as types from '~/mutation-types'
-import categoryThreeQuery from '~/apollo/queries/common/category/getCategoryThree.graphql'
-
+import categoryThreeQuery from '~/apollo/queries/category/getCategoryThree.graphql'
 
 // STATE
 export const state = () => ({
@@ -10,13 +9,13 @@ export const state = () => ({
 export const getters = {
   tree: (state) => state.tree,
 }
-// MUTATION 
+// MUTATION - sync (commit)
 export const mutations = {
   [types.SET_CATEGORY_TREE](state, payload) {
     state.tree = payload
   },
 }
-// ACTION 
+// ACTION - async (dispatch)
 export const actions = {
   async setCategoryTree({ commit, dispatch, state, rootGetters }) {
     const gql = this.app.apolloProvider.defaultClient
@@ -39,7 +38,7 @@ export const actions = {
       ) {
         return commit(types.SET_CATEGORY_TREE, data.categoryList[0].children)
       }
-      throw new Error('Smth go wrong !')
+      throw new Error('Все плохо')
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e)

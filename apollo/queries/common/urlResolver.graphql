@@ -1,9 +1,7 @@
-query urlResolver($url: String!){
-  urlResolver(url: $url){
-    canonical_url
+query getUrlResolver($url: String!) {
+  urlResolver(url: $url) {
     id
-    redirectCode
-    relative_url
+    canonical_url
     type
   }
 }

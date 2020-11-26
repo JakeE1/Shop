@@ -16,8 +16,7 @@
     >
       <v-app-bar-nav-icon @click.stop="toggleDrawer"></v-app-bar-nav-icon>
       <v-toolbar-title>
-        <nuxt-link class="white--text" style="text-decoration: none;" nuxt :to="{name: 'index'}" exact>Shop
-        </nuxt-link>
+        <Logo />
       </v-toolbar-title>
     </v-app-bar>
 
@@ -30,19 +29,15 @@
 </template>
 
 <script>
-  import Header from '~/components/system/Header.vue'
-  import Footer from '~/components/system/Footer.vue'
-
+  import Header from '~/components/system/Header'
+  import Footer from '~/components/system/Footer'
+  import Logo from '~/components/system/Logo'
+  
   export default {
-    components: { Header, Footer },
+    components: { Header, Footer, Logo },
     data: () => ({
-      drawer: false
-    }),
-    methods: {
-      toggleDrawer() {
-        this.drawer = !this.drawer
-      }
-    },
+    drawer: null,
+  }),
     created() {
       this.$vuetify.theme.dark = false
     }
