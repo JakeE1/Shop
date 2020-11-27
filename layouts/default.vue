@@ -1,20 +1,11 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      clipped
-      dark
-    >
+    <v-navigation-drawer v-model="drawer" app clipped dark>
     <Header />
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      clipped-left
-      dark
-    >
-      <v-app-bar-nav-icon @click.stop="toggleDrawer"></v-app-bar-nav-icon>
+    <v-app-bar app clipped-left dark>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>
         <Logo />
       </v-toolbar-title>

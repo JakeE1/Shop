@@ -1,0 +1,50 @@
+query category(
+    $id: Int!
+    $pageSize: Int!
+    $filters: ProductAttributeFilterInput!
+    $sort: ProductAttributeInput
+) {
+    category(id: $id) {
+        id
+        name
+        description
+        breadcrumbs {
+            category_name
+        }
+        cms_block {
+            content
+        }
+        display_mode
+        filter_price_range
+        image
+        include_in_menu
+        meta_description
+        meta_keywords
+        meta_title
+        product_count
+    }    
+    products(pageSize: $pageSize, currentPage: $currentPage, filter: $filters, sort: $sort) {
+        items {
+            __typename
+            id
+            name
+            sku
+            small_image {
+                url
+            }
+            url_key
+        }
+        total_count
+    }
+
+    __type(name: "ProductAttributeFilterInput") {
+        __typename
+        inputFields {
+            __typename
+            name
+            type {
+                name
+            }
+        }
+    }
+}
