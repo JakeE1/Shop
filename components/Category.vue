@@ -7,7 +7,15 @@
 				</v-col>
 			</v-row>
 			<v-row>
-				<v-col> Products </v-col>
+				<v-col v-for="product in categoryData.products.items"
+				:key="product.sku"
+				cols="12"
+				sm="6"
+				md="4"
+				xl="3"
+				> 
+				<component :is="product.__typename" :product="product" />
+				</v-col>
 			</v-row>
 		</v-container>
 	</div>
@@ -17,6 +25,23 @@
 import categoryQuery from '~/apollo/queries/category/getCategory.graphql'
 
 export default {
+	components: {
+		SimpleProduct: () => ({
+			component: import('~/components/catalog/category/Simple'),
+		}),
+		ConfigurableProduct: () => ({
+			component: import('~/components/catalog/category/Configurable'),
+		}),
+		DownloadableProduct: () => ({
+			component: import('~/components/catalog/category/Downloadable'),
+		}),
+		GroupedProduct: () => ({
+			component: import('~/components/catalog/category/Grouped'),
+		}),
+		BundleProduct: () => ({
+			component: import('~/components/catalog/category/Bundle'),
+		}),
+	},
 	props: {
 		id: {
 			type: Number,
