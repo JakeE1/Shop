@@ -27,6 +27,8 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit({ dispatch }) {
     await dispatch('setStoreConfig')
+    await dispatch('cart/initCart')
+    await dispatch('cart/updateData')
     await Promise.all([dispatch('category/setCategoryTree')])
   },
   async setStoreConfig({ commit }) {

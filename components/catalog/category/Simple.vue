@@ -23,13 +23,22 @@
                 </v-col>
             </v-row>
         </v-img>
+        <div class="product-title__actions">
+            <v-btn block color="red" @click.prevent="submit"></v-btn>
+        </div>
     </div>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 import BaseProduct from '~/components/catalog/category/_Base'
 
 export default {
     extends: BaseProduct,
+    methods: {
+        ...mapActions({
+            addProductToCart: 'cart/addSimpleProductToCart'
+        })
+    }
 }
 </script>

@@ -1,0 +1,41 @@
+query getCartDetails($cartId: String!) {
+	cart(cart_id: $cartId) {
+		email
+		is_virtual
+		items {
+			id
+			product {
+				id
+				name
+				sku
+				url_key
+				small_image {
+						url
+						label
+				}
+			}
+			prices {
+				price {
+						currency
+						value
+				}
+				row_total {
+						currency
+						value
+				}
+				total_item_discount {
+						currency
+						value
+				}
+			}
+			quantity
+		}
+		prices {
+			grand_total {
+				value
+				currency
+			}
+		}
+	total_quantity
+	}
+}
